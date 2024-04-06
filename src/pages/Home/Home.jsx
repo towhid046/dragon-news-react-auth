@@ -1,8 +1,11 @@
 
+import Header from './../Shared/Header/Header';
+import LatestMarquee from './../../components/Marquee/LatestMarquee';
 const Home = () => {
     return (
         <div>
-            Home
+            <Header/>
+            <LatestMarquee/>
         </div>
     );
 };
