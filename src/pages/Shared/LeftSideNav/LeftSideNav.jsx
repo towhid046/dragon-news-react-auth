@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SectionTitle from './../SectionTitle/SectionTitle';
 
 const LeftSideNav = () => {
   const [categories, setCategories] = useState([]);
@@ -13,7 +14,7 @@ const LeftSideNav = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">All Category</h2>
+      <SectionTitle title='All Category'/>
       <ul className="flex flex-col items-start justify-start">
         {categories.map((category) => (
           <button
