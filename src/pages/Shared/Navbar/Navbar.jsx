@@ -1,9 +1,10 @@
 import userLogo from '../../../assets/images/user.png'
-const Navbar = () => {
+import { Link } from 'react-router-dom';
+const Navbar = ({bg}) => {
   const links = (
     <>
       <li>
-        <a>Home</a>
+        <Link to='/'>Home</Link>
       </li>
       <li>
         <a>About</a>
@@ -14,8 +15,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav>
-      <div className="navbar bg-base-100 px-0">
+    <nav className={`${bg}`}>
+      <div className={`navbar ${bg} px-0 container mx-auto  px-1`}>
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,9 +50,9 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2">
             <a>
-                <img className='w-10 cursor-pointer' src={userLogo} alt="" />
+                <img className='w-10 rounded-full cursor-pointer' src={userLogo} alt="" />
             </a>
-          <a className="btn rounded-none w-36 text-white bg-[#403f3f]">Log in</a>
+          <Link to={'/login'} className="btn rounded-none w-36 text-white bg-[#403f3f]">Log in</Link>
         </div>
       </div>
     </nav>

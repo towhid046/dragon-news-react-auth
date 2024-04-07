@@ -18,7 +18,7 @@ const NewsDetails = () => {
   }, [news]);
 
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <Header />
       {loading ? (
         <div className="text-center mt-12">

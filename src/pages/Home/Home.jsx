@@ -8,7 +8,7 @@ import MainNews from './../Shared/MainNews/MainNews';
 
 const Home = () => {
   return (
-    <>
+    <div className="container mx-auto px-4">
       <Header />
       <LatestMarquee />
       <Navbar />
@@ -24,7 +24,7 @@ const Home = () => {
          <NewsLatter/>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
