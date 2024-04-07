@@ -1,36 +1,37 @@
 import Navbar from "./../Shared/Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
     <div>
       <Navbar bg={"bg-[#f3f3f3]"} />
       <div className="hero min-h-screen bg-[#f3f3f3] container-fluid">
-        <div className="hero-content">
-          <div className=" w-full p-12  bg-base-100">
+        <div className="w-full px-4">
+          <div className="max-w-xl bg-base-100 mx-auto p-12">
             <h1 className="text-2xl font-bold text-center mb-8">
               Login your account
             </h1>
             <hr />
-            <form className="card-body">
-              <div className="form-control">
+            <form className="mt-5">
+              <div>
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <strong className="label-text">Email address</strong>
                 </label>
                 <input
                   type="email"
-                  placeholder="email"
-                  className="input input-bordered bg-[#f3f3f3]"
+                  placeholder="Enter your email"
+                  className="input w-full rounded-none outline-none bg-[#f3f3f3]"
                   required
                 />
               </div>
-              <div className="form-control">
+              <div>
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <strong className="label-text">Password</strong>
                 </label>
                 <input
                   type="password"
-                  placeholder="password"
-                  className="input input-bordered bg-[#f3f3f3]"
+                  placeholder="Password"
+                  className="w-full input rounded-none outline-none bg-[#f3f3f3]"
                   required
                 />
                 <label className="label">
@@ -40,9 +41,20 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn w-full rounded-none hover:bg-black text-white bg-[#403f3f]">
+                  Log in
+                </button>
               </div>
             </form>
+            <p className="text-center mt-5">
+              Don't have an account?{" "}
+              <Link
+                to={"/regester"}
+                className=" cursor-pointer text-red-400 font-semibold"
+              >
+                Regester
+              </Link>
+            </p>
           </div>
         </div>
       </div>
