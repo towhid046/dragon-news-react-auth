@@ -12,11 +12,11 @@ const Home = () => {
       <Header />
       <LatestMarquee />
       <Navbar />
-      <div className="grid md:grid-cols-4 md:gap-6">
+      <div className="lg:grid grid-cols-4 gap-6">
         <div>
           <LeftSideNav />
         </div>
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <MainNews/>
         </div>
         <div>

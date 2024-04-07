@@ -2,6 +2,7 @@ import { createBrowserRouter } from  "react-router-dom";
 
 import Home from "./../pages/Home/Home";
 import Root from "./../layout/Root";
+import NewsDetails from "../pages/NewsDetails/NewsDetails";
 
 const routes = createBrowserRouter([
   {
@@ -13,6 +14,12 @@ const routes = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: '/:newsId',
+        element: <NewsDetails/>,
+        loader: ({ params }) =>
+        fetch(`news.json/${params.newsId}`),
+      }
   ],
   },
 ]);

@@ -1,18 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import SectionTitle from "./../SectionTitle/SectionTitle";
 import NewsCard from "../../../components/NewsCard/NewsCard";
-const MainNews = () => {
-  const [news, setNews] = useState([]);
+import { NewsContext } from "../../../providers/ContextProvider/ContextProvider";
 
-  useEffect(() => {
-    const loadData = async () => {
-      const res = await fetch("news.json");
-      const data = await res.json();
-      setNews(data);
-    };
-    loadData();
-  }, []);
-  
+const MainNews = () => {
+  const { news } = useContext(NewsContext);
   return (
     <main>
       <SectionTitle title="Dragon News Home" />
