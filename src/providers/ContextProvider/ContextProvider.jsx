@@ -6,20 +6,9 @@ export const NewsContext = createContext(null);
 const ContextProvider = ({ children }) => {
   const [news, setNews] = useState([]);
 
-  useEffect(() => {
-    const loadData = async () => {
-      const res = await fetch("news.json");
-      const data = await res.json();
-      setNews(data);
-    };
-    loadData();
-  }, []);
-
-  const datas = { news };
-
   return (
     <>
-      <NewsContext.Provider value={datas}>{children}</NewsContext.Provider>
+      <NewsContext.Provider value={'1'}>{children}</NewsContext.Provider>
     </>
   );
 };

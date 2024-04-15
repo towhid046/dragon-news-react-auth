@@ -14,13 +14,13 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
+        loader: ()=> fetch('/news.json'),
         element: <Home />,
       },
       {
-        path: '/:newsId',
+        path: 'news/:newsId',
+        loader: ()=> fetch('/news.json'),
         element: <NewsDetails/>,
-        loader: ({ params }) =>
-        fetch(`news.json/${params.newsId}`),
       },
       {
         path: '/login',

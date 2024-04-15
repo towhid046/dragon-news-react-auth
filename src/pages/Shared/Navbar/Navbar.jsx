@@ -1,21 +1,22 @@
 import userLogo from '../../../assets/images/user.png'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types'
 const Navbar = ({bg = 'bg-white'}) => {
   const links = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <NavLink to='/'>Home</NavLink>
       </li>
       <li>
-        <a>About</a>
+        <NavLink to={'/about'}>About</NavLink>
       </li>
       <li>
-        <a>Career</a>
+        <NavLink to={'/career'}>Career</NavLink>
       </li>
     </>
   );
   return (
-    <nav className={`${bg}`}>
+    <nav className={`${bg} sticky top-0 z-50`}>
       <div className={`navbar ${bg} container mx-auto  px-1`}>
         <div className="navbar-start">
           <div className="dropdown">
@@ -37,14 +38,14 @@ const Navbar = ({bg = 'bg-white'}) => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content  gap-3 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
              {links}
             </ul>
         </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 gap-3">
            {links}
           </ul>
         </div>
@@ -59,4 +60,7 @@ const Navbar = ({bg = 'bg-white'}) => {
   );
 };
 
+Navbar.propTypes = {
+  bg: PropTypes.string
+}
 export default Navbar;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "./../SectionTitle/SectionTitle";
+import LeftNavCard from './../../../components/LeftNavCard/LeftNavCard';
 
 const LeftSideNav = () => {
   const [categories, setCategories] = useState([]);
@@ -25,22 +26,11 @@ const LeftSideNav = () => {
           </button>
         ))}
       </ul>
-      <div>
-        <div className=" bg-base-100 border">
-          <figure>
-            <img
-              src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-              alt="Shoes"
-            />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              
-            </div>
-          </div>
-        </div>
+
+      <div className="my-6 flex flex-col gap-2">
+       <LeftNavCard/>
+       <LeftNavCard/>
+       <LeftNavCard/>
       </div>
     </div>
   );

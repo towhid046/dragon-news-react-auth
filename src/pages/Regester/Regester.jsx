@@ -5,7 +5,7 @@ const Regester = () => {
   return (
     <div>
       <Navbar bg={"bg-[#f3f3f3]"} />
-      <div className="hero min-h-screen bg-[#f3f3f3] container-fluid pt-12">
+      <div className="hero min-h-screen bg-[#f3f3f3] container-fluid py-12">
         <div className="w-full px-4">
           <div className="max-w-xl bg-base-100 mx-auto p-12">
             <h1 className="text-2xl font-bold text-center mb-8">

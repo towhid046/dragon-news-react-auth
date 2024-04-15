@@ -41,9 +41,9 @@ const NewsCard = ({ info }) => {
         <h2 className="text-2xl font-bold">{title}</h2>
         <img src={image_url} alt="News Cover Img" />
         <p>
-          {details?.split(" ").splice(0, 50).join(" ")}{" "}
-          <Link to={`/${_id}`} className="font-semibold">
-            Read More...
+          {details?.split(" ").splice(0, 50).join(" ")}{"... "}
+          <Link to={`news/${_id}`} className="font-semibold text-orange-400">
+            Read More
           </Link>
         </p>
 
@@ -60,7 +60,6 @@ const NewsCard = ({ info }) => {
                 type="radio"
                 name="rating-2"
                 className="mask mask-star-2 bg-orange-400"
-                checked
               />
               <input
                 type="radio"

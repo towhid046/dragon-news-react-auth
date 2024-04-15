@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import Header from "./../Shared/Header/Header";
 import RightSideNav from "./../Shared/RightSideNav/RightSideNav";
 import { NewsContext } from "../../providers/ContextProvider/ContextProvider";
 import SectionTitle from "./../Shared/SectionTitle/SectionTitle";
+import Navbar from "./../Shared/Navbar/Navbar";
+import LeftNavCard from "./../../components/LeftNavCard/LeftNavCard";
 
 const NewsDetails = () => {
   const [loading, setLoading] = useState(true);
-  const { news } = useContext(NewsContext);
+  const news = useLoaderData();
   const { newsId } = useParams();
   const [targetedNews, setTargetedNews] = useState({});
 
@@ -20,6 +22,7 @@ const NewsDetails = () => {
   return (
     <div className="container mx-auto px-4">
       <Header />
+      <Navbar />
       {loading ? (
         <div className="text-center mt-12">
           <span className="loading loading-spinner loading-lg"></span>
@@ -35,6 +38,11 @@ const NewsDetails = () => {
               <button className="btn btn-error rounded-none text-white">
                 All news in this category
               </button>
+            </div>
+            <div className="flex lg:flex-row flex-col gap-5 justify-between py-8">
+              <LeftNavCard />
+              <LeftNavCard />
+              <LeftNavCard />
             </div>
           </div>
           <div className="col-span-1">
