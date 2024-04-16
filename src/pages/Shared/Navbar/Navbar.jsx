@@ -1,20 +1,38 @@
-import userLogo from '../../../assets/images/user.png'
-import { Link, NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types'
-const Navbar = ({bg = 'bg-white'}) => {
+import userLogo from "../../../assets/images/user.png";
+import { Link, NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/ContextProvider/ContextProvider";
+import { toast } from "react-toastify";
+
+const Navbar = ({ bg = "bg-white" }) => {
+  const { user, logOut, loading } = useContext(AuthContext);
+
+  const handelLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Log Out Success", {
+          autoClose: 3000,
+          position: "top-center",
+        });
+      })
+      .catch((err) => console.error(err));
+  };
+
   const links = (
     <>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to={'/about'}>About</NavLink>
+        <NavLink to={"/about"}>About</NavLink>
       </li>
       <li>
-        <NavLink to={'/career'}>Career</NavLink>
+        <NavLink to={"/career"}>Career</NavLink>
       </li>
     </>
   );
+
   return (
     <nav className={`${bg} sticky top-0 z-50`}>
       <div className={`navbar ${bg} container mx-auto  px-1`}>
@@ -40,20 +58,50 @@ const Navbar = ({bg = 'bg-white'}) => {
               tabIndex={0}
               className="menu menu-sm dropdown-content  gap-3 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-             {links}
+              {links}
             </ul>
-        </div>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-3">
-           {links}
-          </ul>
+          <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
         </div>
         <div className="navbar-end gap-2">
-            <a>
-                <img className='w-10 rounded-full cursor-pointer' src={userLogo} alt="" />
-            </a>
-          <Link to={'/login'} className="btn hover:bg-black rounded-none w-36 text-white bg-[#403f3f]">Log in</Link>
+          {loading ? (
+            <span className="loading loading-dots loading-md"></span>
+          ) : (
+            <>
+              {user ? (
+                <>
+                  <img
+                    title={user?.displayName}
+                    className="w-10 rounded-full cursor-pointer"
+                    src={user?.photoURL && user.photoURL}
+                    alt="User Profile"
+                  />
+                  <button
+                    onClick={handelLogOut}
+                    className="btn hover:bg-black rounded-none w-36 text-white bg-[#403f3f]"
+                  >
+                    Log Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <img
+                    className="w-10 rounded-full cursor-pointer"
+                    src={userLogo}
+                    alt=""
+                  />
+                  <Link
+                    to={"/login"}
+                    className="btn hover:bg-black rounded-none w-36 text-white bg-[#403f3f]"
+                  >
+                    Log in
+                  </Link>
+                </>
+              )}
+            </>
+          )}
         </div>
       </div>
     </nav>
@@ -61,6 +109,6 @@ const Navbar = ({bg = 'bg-white'}) => {
 };
 
 Navbar.propTypes = {
-  bg: PropTypes.string
-}
+  bg: PropTypes.string,
+};
 export default Navbar;

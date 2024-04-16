@@ -1,14 +1,36 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { auth, googleProvider } from "../../config/firebase";
 
-export const NewsContext = createContext(null);
+export const AuthContext = createContext(null);
 
 const ContextProvider = ({ children }) => {
-  const [news, setNews] = useState([]);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true)
 
+  const loginUserWithGoogle = () => {
+    setLoading(true)
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  const logOut = () => {
+    setLoading(true)
+    return signOut(auth)
+  }
+
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false)
+    });
+    return () => unSubscribe();
+  }, []);
+
+  const authData = { loading, loginUserWithGoogle, user, logOut };
   return (
     <>
-      <NewsContext.Provider value={'1'}>{children}</NewsContext.Provider>
+      <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
     </>
   );
 };

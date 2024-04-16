@@ -7,14 +7,32 @@ import { FaFacebook } from "react-icons/fa";
 import qZone1 from "../../../assets/images/qZone1.png";
 import qZone2 from "../../../assets/images/qZone2.png";
 import qZone3 from "../../../assets/images/qZone3.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/ContextProvider/ContextProvider";
+import { toast } from "react-toastify";
 
 const RightSideNav = () => {
+  const { loginUserWithGoogle } = useContext(AuthContext);
+
+  const handelLogInWithGoogle = () => {
+    loginUserWithGoogle()
+      .then(() => {
+        toast.success("Log In Success", {
+          autoClose: 3000,
+        });
+      })
+      .then((err) => console.error(err));
+  };
+
   return (
     <div>
       {/* Log in with */}
       <SectionTitle title="Login With" />
       <div className="space-y-1">
-        <button className="btn btn-outline btn-info btn-sm w-full">
+        <button
+          onClick={handelLogInWithGoogle}
+          className="btn btn-outline btn-info btn-sm w-full"
+        >
           <img className="max-w-5" src={googleLogo} alt="" />
           <span>Login with Google</span>
         </button>
@@ -51,7 +69,6 @@ const RightSideNav = () => {
           <img src={qZone3} alt="Q-Zone3 Img" />
         </div>
       </div>
-
     </div>
   );
 };

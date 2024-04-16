@@ -69,6 +69,15 @@ const Regester = () => {
                 </button>
               </div>
             </form>
+            <p className="text-center mt-5">
+              Already have an account?{" "}
+              <Link
+                to={"/login"}
+                className=" cursor-pointer text-red-400 font-semibold"
+              >
+                Login
+              </Link>
+            </p>
           </div>
         </div>
       </div>

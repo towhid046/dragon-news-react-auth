@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Header from "./../Shared/Header/Header";
 import RightSideNav from "./../Shared/RightSideNav/RightSideNav";
-import { NewsContext } from "../../providers/ContextProvider/ContextProvider";
 import SectionTitle from "./../Shared/SectionTitle/SectionTitle";
 import Navbar from "./../Shared/Navbar/Navbar";
 import LeftNavCard from "./../../components/LeftNavCard/LeftNavCard";
@@ -39,11 +38,14 @@ const NewsDetails = () => {
                 All news in this category
               </button>
             </div>
-            <div className="flex lg:flex-row flex-col gap-5 justify-between py-8">
+            <section className="py-8">
+              <h2 className="text-xl mb-3 font-semibold">Editors Insight</h2>
+            <div className="flex lg:flex-row flex-col gap-5 justify-between">
               <LeftNavCard />
               <LeftNavCard />
               <LeftNavCard />
             </div>
+            </section>
           </div>
           <div className="col-span-1">
             <RightSideNav />
