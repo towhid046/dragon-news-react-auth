@@ -5,22 +5,29 @@ import { AuthContext } from "../../providers/ContextProvider/ContextProvider";
 import { toast } from "react-toastify";
 
 const Regester = () => {
-  const { createUser, user } = useContext(AuthContext);
-  
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
   const handleRegisterForm = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
+    const userName = form.get("name");
+    const imgUrl = form.get("photoUrl");
 
     // create User
     createUser(email, password)
       .then(() => {
         toast.success("Your account created succfully");
+        updateUserProfile(userName, imgUrl)
+          .then((result) => {})
+          .catch((error) => console.error(error));
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err);
       });
+
+    // update user
   };
 
   return (
