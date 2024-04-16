@@ -80,7 +80,7 @@ const Navbar = ({ bg = "bg-white" }) => {
                   />
                   <button
                     onClick={handelLogOut}
-                    className="btn hover:bg-black rounded-none w-36 text-white bg-[#403f3f]"
+                    className="btn bg-black rounded-none w-36 text-white hover:bg-[#403f3f]"
                   >
                     Log Out
                   </button>

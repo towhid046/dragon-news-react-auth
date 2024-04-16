@@ -12,10 +12,20 @@ import { AuthContext } from "../../../providers/ContextProvider/ContextProvider"
 import { toast } from "react-toastify";
 
 const RightSideNav = () => {
-  const { loginUserWithGoogle } = useContext(AuthContext);
+  const { loginUserWithGoogle, loginUserWithGitHub } = useContext(AuthContext);
 
   const handelLogInWithGoogle = () => {
     loginUserWithGoogle()
+      .then(() => {
+        toast.success("Log In Success", {
+          autoClose: 3000,
+        });
+      })
+      .then((err) => console.error(err));
+  };
+
+  const handelLogInWithGitHub = () => {
+    loginUserWithGitHub()
       .then(() => {
         toast.success("Log In Success", {
           autoClose: 3000,
@@ -36,7 +46,8 @@ const RightSideNav = () => {
           <img className="max-w-5" src={googleLogo} alt="" />
           <span>Login with Google</span>
         </button>
-        <button className="btn btn-outline  btn-sm w-full">
+        
+        <button onClick={handelLogInWithGitHub} className="btn btn-outline  btn-sm w-full">
           <img className="max-w-5" src={githubLogo} alt="" />
           <span>Login with Github</span>
         </button>
