@@ -1,7 +1,28 @@
+import { useContext } from "react";
 import Navbar from "./../Shared/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/ContextProvider/ContextProvider";
+import { toast } from "react-toastify";
 
 const Regester = () => {
+  const { createUser, user } = useContext(AuthContext);
+  
+  const handleRegisterForm = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    // create User
+    createUser(email, password)
+      .then(() => {
+        toast.success("Your account created succfully");
+      })
+      .catch((err) => {
+        console.error(err)
+      });
+  };
+
   return (
     <div>
       <Navbar bg={"bg-[#f3f3f3]"} />
@@ -12,13 +33,14 @@ const Regester = () => {
               Register your account
             </h1>
             <hr />
-            <form className="mt-5">
+            <form onSubmit={handleRegisterForm} className="mt-5">
               <div>
                 <label className="label">
                   <strong className="label-text">Your Name</strong>
                 </label>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Enter your name"
                   className="focus:outline-none input w-full rounded-none outline-none bg-[#f3f3f3]"
                   required
@@ -30,6 +52,7 @@ const Regester = () => {
                 </label>
                 <input
                   type="text"
+                  name="photoUrl"
                   placeholder="Enter your photo url"
                   className="focus:outline-none input w-full rounded-none outline-none bg-[#f3f3f3]"
                   required
@@ -40,6 +63,7 @@ const Regester = () => {
                   <strong className="label-text">Email</strong>
                 </label>
                 <input
+                  name="email"
                   type="email"
                   placeholder="Enter your email"
                   className="focus:outline-none input w-full rounded-none outline-none bg-[#f3f3f3]"
@@ -52,13 +76,18 @@ const Regester = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="Password"
                   className="focus:outline-none w-full input rounded-none outline-none bg-[#f3f3f3]"
                   required
                 />
               </div>
               <div className="flex items-center gap-1 mt-6">
-                  <input type="checkbox" id='terms-contition' className="checkbox checkbox-sm rounded" /> 
+                <input
+                  type="checkbox"
+                  id="terms-contition"
+                  className="checkbox checkbox-sm rounded"
+                />
                 <label htmlFor="terms-contition" className="cursor-pointer">
                   <span>Accept Term & Conditions</span>
                 </label>

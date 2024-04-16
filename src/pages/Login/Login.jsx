@@ -1,7 +1,29 @@
+import { useContext } from "react";
 import Navbar from "./../Shared/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/ContextProvider/ContextProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
+  const handleLoginForm = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    // create User
+    loginUser(email, password)
+      .then(() => {
+        toast.success("Log in successfull");
+        e.target.reset()
+      })
+      .catch((err) => {
+        toast.error('Something went wrong');
+      });
+  };
+
   return (
     <div>
       <Navbar bg={"bg-[#f3f3f3]"} />
@@ -12,13 +34,14 @@ const Login = () => {
               Login your account
             </h1>
             <hr />
-            <form className="mt-5">
+            <form onSubmit={handleLoginForm} className="mt-5">
               <div>
                 <label className="label">
                   <strong className="label-text">Email address</strong>
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="Enter your email"
                   className="focus:outline-none input w-full rounded-none outline-none bg-[#f3f3f3]"
                   required
@@ -30,6 +53,7 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="Password"
                   className="focus:outline-none w-full input rounded-none outline-none bg-[#f3f3f3]"
                   required
